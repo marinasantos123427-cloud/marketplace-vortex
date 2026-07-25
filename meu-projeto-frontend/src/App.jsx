@@ -11,6 +11,7 @@ import CadastrarItens from './pages/CadastrarItens';
 import Buscar from './pages/Buscar';
 import Login from './pages/Login';
 import MeusProdutos from "./pages/MeusProdutos.jsx";
+import PWABadge from "./PWABadge.jsx";
 
 function App() {
 
@@ -64,6 +65,7 @@ function App() {
         )}
     </nav>
      <main className="p-8">
+      <PWABadge />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cadastrar" element={<CadastrarItens usuario={usuario}/>} />
