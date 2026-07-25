@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Fragment, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function CadastrarItens() {
+function CadastrarItens({usuario}) {
+
+const navigate = useNavigate();
 
 const [produto, setProduto] = useState({
     tipoDeProduto: '',
@@ -11,13 +14,19 @@ const [produto, setProduto] = useState({
     descricao: ''
 });
 
+useEffect(() => {
+        if (usuario === ''){
+            navigate('/')
+        }
+    }, [usuario])
+
 const [imagem, setImagem] = useState(null);
 
 async function cadastrarProduto(){
 
     const formData = new FormData()
 
-    formData.append("dono", produto.dono)
+    formData.append("dono", usuario)
     formData.append("valor", produto.valor)
     formData.append("descricao", produto.descricao)
     formData.append("tipoDeNegociacao", produto.tipoDeNegociacao)
@@ -50,9 +59,6 @@ return (
       <p className="text-red-500 text-left text-xl pb-8">Cadastre aqui os seus itens para vender ou doar!</p>
       <div className="relative w-full">
 
-            <p className="text-left text-xl">Nome do dono do produto: {produto.dono}</p>
-            <input className="block px-4 py-2 border rounded-md text-left mt-3" type='text' value={produto.dono} onChange={(e) => setProduto({...produto, dono: e.target.value})}/>
-
             <p className="text-left text-xl pt-10">Tipo de produto: </p>
             <select className="block px-2 py-1 border rounded-md mt-3 -mb-2" value={produto.tipoDeProduto} onChange={(e) => setProduto({...produto, tipoDeProduto: e.target.value})}>
                 <option value="">Selecione...</option>
@@ -84,9 +90,9 @@ return (
             <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.valor} onChange={(e) => setProduto({...produto, valor: e.target.value})}/>
             
             <p className="text-left text-xl pt-10">Faça o upload de uma imagem do produto:  </p>
-            <input className="block px-4 py-2 border rounded-md mt-3" type ="file" accept="image/png, image/jpeg"  onChange={(e) => setImagem(e.target.files[0])}/>
+            <input className="block px-4 py-2 border rounded-md mt-3" type ="file" accept="image/png, image/jpeg, image/jpg"  onChange={(e) => setImagem(e.target.files[0])}/>
             
-            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg shadow-sm transition-colors duration-200 focus:outline-hidden focus:ring-1 focus:ring-offset-2 mt-10 block"onClick={cadastrarProduto}>Cadastrar</button>
+            <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg shadow-sm transition-colors duration-200 focus:outline-hidden focus:ring-1 focus:ring-offset-2 mt-10 block" onClick={cadastrarProduto}>Cadastrar</button>
 
      </div>
     </div>

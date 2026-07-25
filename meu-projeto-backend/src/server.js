@@ -36,11 +36,14 @@ app.post('/produtos', upload.single('imagem'), async (req, res) => {
 
 app.get('/produtos', async (req, res) => {
     try {
-        const produtos = await Produto.find().sort({_id: -1}); 
-        if (produtos.length === 0){
-            throw new Error("Produto nao encontrado!")
+        
+        const filtro = {}
+
+        if (req.query.dono){
+            filtro.dono = req.query.dono
         }
-        res.json(produtos);
+        const produtosFiltrados = await Produto.find(filtro).sort({_id: -1});
+        res.json(produtosFiltrados);
     } catch (erro){
          console.error("Erro na busca");
          res.status(404).json({ // o res.status envia o codigo de status HTTP 404 em formato JSON 

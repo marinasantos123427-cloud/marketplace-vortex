@@ -1,9 +1,11 @@
 import React from 'react';
 import { Fragment, useState, useEffect } from 'react';
 
-const categorias = ['Livro', 'Artigo de papelaria', 'Eletronicos', 'Vestuário', 'Calculadora', 'Xerox', 'Móveis', 'Equipamento prático', 'Equipamento de medição', 'Outro'];
+
 
 function Home () {
+
+  const categorias = [{valor: 'livro', rotulo: 'Livro'}, {valor: 'artigo de papelaria', rotulo: 'Artigo de papelaria'}, {valor: 'eletronicos', rotulo: 'Eletronicos'} , {valor: 'vestuario', rotulo: 'Vestuário'} , {valor: 'calculadora', rotulo: 'Calculadora'}, {valor: 'xerox', rotulo: 'Xerox'}, {valor: 'moveis', rotulo: 'Móveis'} , {valor: 'equipamento pratico', rotulo: 'Equipamento prático'}, {valor: 'equipamento de medicao', rotulo: 'Equipamento de medição'} , {valor: 'outro', rotulo: 'Outro'} ];
 
   const [produtos, setProdutos] = useState([])
   const [categoriaSel, setCategoriaSel] = useState('')
@@ -12,12 +14,15 @@ function Home () {
   /*.filter((produto) => categoriaSel === '' || produto.tipoDeNegociacao === categoriaSel)*/
 
   useEffect(() => {
+
     async function buscarProdutos() {
       const res = await fetch('http://localhost:3000/produtos');
       const dados = await res.json();
       setProdutos(dados);
     }
+
     buscarProdutos();
+    
   }, []);
 
   return (
@@ -27,7 +32,7 @@ function Home () {
         <option value="">Todas as categorias</option>
         
         {categorias.map((categ) => (
-          <option key={categ} value={categ}>{categ}</option>
+          <option key={categ} value={categ.valor}>{categ.rotulo}</option>
         ))}
         
       </select>
