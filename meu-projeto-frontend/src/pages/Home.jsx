@@ -36,7 +36,17 @@ function Home ({usuario}) {
   return (
     <div>
       {usuario === '' && (
-        
+        <>
+        <div className="bg-slate-900 text-white rounded-2xl p-10 my-10 ">
+          <h1 className="text-2xl md:text-4xl font-bold mb-6 text-left">Economia circular na <span className="text-blue-600">Unifor</span></h1>
+          <p className="mb-8 text-2xl text-gray-200 max-w-2xl text-left "> 
+            Plataforma criada para:  </p>
+            <ul className="text-lg text-gray-300 max-w-4xl space-y-4 text-left leading-relaxed font-mono"> 
+              <li>🤝 Democratizar o acesso a itens entre os calouros</li>
+              <li>🔄 Criar uma rede de doações/vendas interna e controlada</li>
+              <li>♻️ Evitar o descarte semestral de materiais reaproveitáveis por meio do mercado circular</li>
+            </ul>
+        </div> 
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-8">
       {estatisticas.map((stat) => (
         <div key={stat.rotulo} className="bg-white rounded-lg shadow p-4 text-center">
@@ -45,6 +55,7 @@ function Home ({usuario}) {
         </div>
       ))}
     </div>
+    </>
       )}
     
 
@@ -61,7 +72,7 @@ function Home ({usuario}) {
       {produtosFiltrados.map((produto) => (
         <div key={produto._id} className="bg-white rounded-lg shadow p-4">
           <img src={`http://localhost:3000/uploads/${produto.imagem}`} alt={produto.descricao} className="w-full h-40 object-cover rounded"/>
-          <p className="font-bold capitalize">{produto.tipoDeProduto}</p>
+          <p className="c">{produto.tipoDeProduto}</p>
           <p>{produto.descricao}</p>
           <p>{produto.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${produto.valor}`}</p>
         </div>
