@@ -3,7 +3,7 @@ import { Fragment, useState, useEffect } from 'react';
 
 
 
-function Home () {
+function Home ({usuario}) {
 
   const categorias = [{valor: 'livro', rotulo: 'Livro'}, {valor: 'artigo de papelaria', rotulo: 'Artigo de papelaria'}, {valor: 'eletronicos', rotulo: 'Eletronicos'} , {valor: 'vestuario', rotulo: 'Vestuário'} , {valor: 'calculadora', rotulo: 'Calculadora'}, {valor: 'xerox', rotulo: 'Xerox'}, {valor: 'moveis', rotulo: 'Móveis'} , {valor: 'equipamento pratico', rotulo: 'Equipamento prático'}, {valor: 'equipamento de medicao', rotulo: 'Equipamento de medição'} , {valor: 'outro', rotulo: 'Outro'} ];
 
@@ -25,14 +25,34 @@ function Home () {
     
   }, []);
 
+  const totalItens = produtos.length;
+  const totalDoacoes  = produtos.filter((p) => p.tipoDeNegociacao === "doacao").length;
+  const estatisticas = [
+    {numero: totalItens, rotulo: 'Itens anunciados'},
+    {numero: totalDoacoes, rotulo: 'Doações disponíveis'}, 
+    {numero: '100+', rotulo: 'Estudantes na plataforma'}
+  ];
+
   return (
     <div>
-      
+      {usuario === '' && (
+        
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-8">
+      {estatisticas.map((stat) => (
+        <div key={stat.rotulo} className="bg-white rounded-lg shadow p-4 text-center">
+         <p className="text-3xl font-bold text-blue-600"> {stat.numero}</p>
+         <p className="text-gray-600">{stat.rotulo} </p>
+        </div>
+      ))}
+    </div>
+      )}
+    
+
       <select className="block px-2 py-1 border rounded-md mt-3 mb-8" value ={categoriaSel} onChange={(e) => setCategoriaSel(e.target.value)}>
         <option value="">Todas as categorias</option>
         
         {categorias.map((categ) => (
-          <option key={categ} value={categ.valor}>{categ.rotulo}</option>
+          <option key={categ.rotulo} value={categ.valor}>{categ.rotulo}</option>
         ))}
         
       </select>
@@ -41,7 +61,7 @@ function Home () {
       {produtosFiltrados.map((produto) => (
         <div key={produto._id} className="bg-white rounded-lg shadow p-4">
           <img src={`http://localhost:3000/uploads/${produto.imagem}`} alt={produto.descricao} className="w-full h-40 object-cover rounded"/>
-          <p className="font-bold">{produto.tipoDeProduto}</p>
+          <p className="font-bold capitalize">{produto.tipoDeProduto}</p>
           <p>{produto.descricao}</p>
           <p>{produto.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${produto.valor}`}</p>
         </div>
