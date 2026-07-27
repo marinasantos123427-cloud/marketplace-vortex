@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 function CadastrarItens({usuario}) {
 
 const navigate = useNavigate();
-
+const [mensagem, setMensagem] = useState('');
 const [produto, setProduto] = useState({
     tipoDeProduto: '',
     dono: '', 
@@ -51,12 +51,17 @@ async function cadastrarProduto(){
     
     setImagem(null);
 
-    console.log("Produto cadastrado!")
+    setMensagem('Produto cadastrado com sucesso!');
+    setTimeout(() => setMensagem(''), 3000);
 }
 
 return (
+    
     <div>
-      <p className="text-red-500 text-left text-xl pb-8">Cadastre aqui os seus itens para vender ou doar!</p>
+        {mensagem !== '' && (
+        <p className="bg-green-100 text-green-800 px-4 py-2 rounded mb-4"> {mensagem}</p>
+    )}
+      <p className="text-red-500 text-left text-xl">Cadastre aqui os seus itens para vender ou doar!</p>
       <div className="relative w-full">
 
             <p className="text-left text-xl pt-10">Tipo de produto: </p>

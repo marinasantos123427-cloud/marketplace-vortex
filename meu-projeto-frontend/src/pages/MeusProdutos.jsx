@@ -35,6 +35,10 @@ function MeusProdutos({usuario}) {
 
     return (
       <>
+      <h1 className="text-2xl font-bold mb-6">Meus produtos</h1>
+      {meusProdutos.length === 0 &&(
+        <p className="text-gray-500 ">Você ainda não anunciou nenhum produto.</p>
+      )}
       {mensagem !== '' && (
         <p className="bg-green-100 text-green-800 px-4 py-2 rounded mb-4"> {mensagem}</p>
       )}

@@ -13,7 +13,7 @@ function Login({setUsuario}) {
         if (nome.trim() === '')return;
         localStorage.setItem('usuario', nome);
         setUsuario(nome);
-        navigate('/');
+        navigate('/MeusProdutos');
     }
 
     return (

@@ -5,7 +5,7 @@ const Produto = require('./models/produtos.js');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'})
 
-mongoose.connect('mongodb://localhost:27017/meu-primeiro-banco');
+mongoose.connect('mongodb+srv://marinasantos123427_db_user:<db_password>@cluster0.srcjeyl.mongodb.net/?appName=Cluster0');
 
 const app = express(); 
 

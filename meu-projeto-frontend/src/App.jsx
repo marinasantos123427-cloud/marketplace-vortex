@@ -38,14 +38,16 @@ function App() {
   const navigate = useNavigate();
   return (  
   <div className="min-h-screen bg-gray-100">  
-    <nav className="bg-slate-900 text-white px-8 py-5 flex items-center justify-between shadow-md">
-        <ul className={usuario === '' ? "text-base md:text-xl flex items-center gap-8 font-medium" : "flex items-center gap-68 font-medium text-base md:text-xl"}>
-          <li>
+    <nav className="bg-slate-900 text-white px-8 py-5 flex items-center justify-between shadow-md flex-wrap">
+        <ul className={usuario === '' ? "text-base md:text-xl flex items-center gap-8 font-medium" : "flex items-center gap-4 md:gap-98 font-medium text-base md:text-xl"}>
+          {usuario === '' &&(
+            <li>
             <Link to="/" className="flex flex-wrap gap-2 mb-0.2 hover:text-blue-400 transition-colors"> 
               Home
             </Link>
           </li>
-    
+          )}
+      
           <li>
             <button onClick={() => setMostrarBusca(!mostrarBusca)} className=" hover:text-blue-400 transition-colors text-base md:text-xl font-medium"> 
               Buscar<span>🔍</span>
@@ -55,7 +57,7 @@ function App() {
             )}
           </li>
         </ul>
-        <div  className="flex items-center gap-12">
+        <div  className="flex items-center gap-3 md:gap-12" >
         
         {usuario !== '' &&(
           <div className="flex items-center gap-10 text-base md:text-xl">
