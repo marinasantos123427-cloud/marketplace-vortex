@@ -5,7 +5,8 @@ const Produto = require('./models/produtos.js');
 const multer = require('multer');
 const upload = multer({dest: 'uploads/'})
 
-mongoose.connect('mongodb+srv://marinasantos123427_db_user:<db_password>@cluster0.srcjeyl.mongodb.net/?appName=Cluster0');
+require('dotenv').config();
+mongoose.connect(process.env.MONGO_URL);
 
 const app = express(); 
 
@@ -86,6 +87,6 @@ app.put('/produtos/:id', async (req, res) => {
         
     }
 })
-app.listen(3000, () => {
+app.listen(process.env.PORT || 3000, () => {
     console.log('Servidor rodando na porta 3000');
 })
