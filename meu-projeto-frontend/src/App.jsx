@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     async function buscarProduto() {
-      const res = await fetch ('http://localhost:3000/produtos');
+      const res = await fetch ('https://marketplace-vortex.onrender.com');
       const dados = await res.json();
       setProdutos(dados);
     }

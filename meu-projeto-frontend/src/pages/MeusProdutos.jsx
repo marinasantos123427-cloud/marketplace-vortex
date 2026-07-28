@@ -16,7 +16,7 @@ function MeusProdutos({usuario}) {
 
     useEffect(() => {
         async function buscarMeusProdutos(){
-           const res = await fetch(`http://localhost:3000/produtos?dono=${usuario}`);
+           const res = await fetch(`https://marketplace-vortex.onrender.com?dono=${usuario}`);
            const dados = await res.json();
            setMeusProdutos(dados);
         }
@@ -25,7 +25,7 @@ function MeusProdutos({usuario}) {
 
     async function deletarProduto(id){
       if (!window.confirm('Excluir este produto?')) return;
-        await fetch(`http://localhost:3000/produtos/${id}`, {
+        await fetch(`https://marketplace-vortex.onrender.com/${id}`, {
           method: 'DELETE'
         }); 
         setMeusProdutos((prev) => prev.filter((p) => p._id !== id));

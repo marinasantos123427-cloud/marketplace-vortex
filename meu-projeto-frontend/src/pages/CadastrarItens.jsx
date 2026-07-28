@@ -36,7 +36,7 @@ async function cadastrarProduto(){
         formData.append("imagem", imagem)
     }
 
-    await fetch('http://localhost:3000/produtos', {
+    await fetch('https://marketplace-vortex.onrender.com', {
         method: 'POST',
         body: formData
     });
