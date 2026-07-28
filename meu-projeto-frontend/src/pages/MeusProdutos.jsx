@@ -16,7 +16,7 @@ function MeusProdutos({usuario}) {
 
     useEffect(() => {
         async function buscarMeusProdutos(){
-           const res = await fetch(`https://marketplace-vortex.onrender.com?dono=${usuario}`);
+           const res = await fetch(`${import.meta.env.VITE_API_URL}/produtos?dono=${usuario}`);
            const dados = await res.json();
            setMeusProdutos(dados);
         }
@@ -25,7 +25,7 @@ function MeusProdutos({usuario}) {
 
     async function deletarProduto(id){
       if (!window.confirm('Excluir este produto?')) return;
-        await fetch(`https://marketplace-vortex.onrender.com/${id}`, {
+        await fetch(`${import.meta.env.VITE_API_URL}/produtos/${id}`, {
           method: 'DELETE'
         }); 
         setMeusProdutos((prev) => prev.filter((p) => p._id !== id));
@@ -45,7 +45,7 @@ function MeusProdutos({usuario}) {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {meusProdutos.map((prod) => (
         <div key={prod._id} className="bg-white rounded-lg shadow p-4">
-            <img src={`http://localhost:3000/uploads/${prod.imagem}`} alt={prod.descricao} className="w-full h-40 object-cover rounded"></img>
+            <img src={`${import.meta.env.VITE_API_URL}/uploads/${prod.imagem}`} alt={prod.descricao} className="w-full h-40 object-cover rounded"></img>
             <p className="font-bold capitalize">{prod.tipoDeProduto}</p>
             <p>{prod.descricao}</p>
             <p>{prod.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${prod.valor}`}</p>

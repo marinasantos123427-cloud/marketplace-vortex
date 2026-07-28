@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     async function buscarProduto() {
-      const res = await fetch ('https://marketplace-vortex.onrender.com');
+      const res = await fetch (`${import.meta.env.VITE_API_URL}/produtos`);
       const dados = await res.json();
       setProdutos(dados);
     }

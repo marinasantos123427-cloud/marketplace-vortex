@@ -16,7 +16,7 @@ function Home ({usuario}) {
   useEffect(() => {
 
     async function buscarProdutos() {
-      const res = await fetch('https://marketplace-vortex.onrender.com');
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/produtos`);
       const dados = await res.json();
       setProdutos(dados);
     }
@@ -71,7 +71,7 @@ function Home ({usuario}) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {produtosFiltrados.map((produto) => (
         <div key={produto._id} className="bg-white rounded-lg shadow p-4">
-          <img src={`http://localhost:3000/uploads/${produto.imagem}`} alt={produto.descricao} className="w-full h-40 object-cover rounded"/>
+          <img src={`${import.meta.env.VITE_API_URL}/uploads/${produto.imagem}`} alt={produto.descricao} className="w-full h-40 object-cover rounded"/>
           <p className="c">{produto.tipoDeProduto}</p>
           <p>{produto.descricao}</p>
           <p>{produto.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${produto.valor}`}</p>

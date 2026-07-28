@@ -36,7 +36,7 @@ async function cadastrarProduto(){
         formData.append("imagem", imagem)
     }
 
-    await fetch('https://marketplace-vortex.onrender.com', {
+    await fetch(`${import.meta.env.VITE_API_URL}/produtos`, {
         method: 'POST',
         body: formData
     });
