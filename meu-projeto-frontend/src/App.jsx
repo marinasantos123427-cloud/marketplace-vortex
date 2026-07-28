@@ -20,21 +20,12 @@ function App() {
   const [termoBusca, setTermoBusca] = useState('');
   const [usuario, setUsuario] = useState(localStorage.getItem('usuario') || '')
   const [mostrarBusca, setMostrarBusca] = useState(false);
-  const [produtos, setProdutos] = useState([]);
-  
+
   function sair(){
     localStorage.removeItem('usuario');
     setUsuario('');
   }
 
-  useEffect(() => {
-    async function buscarProduto() {
-      const res = await fetch (`${import.meta.env.VITE_API_URL}/produtos`);
-      const dados = await res.json();
-      setProdutos(dados);
-    }
-    buscarProduto();
-  }, []);
 
   const navigate = useNavigate();
   return (  
