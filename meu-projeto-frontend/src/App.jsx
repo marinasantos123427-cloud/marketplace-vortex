@@ -53,11 +53,11 @@ function App() {
               Buscar<span>🔍</span>
             </button>
             {mostrarBusca && (
-              <input type="text" placeholder='Pesquisar produto...' value={termoBusca} className="px-2 py-1 rounded-md text-black bg-white ml-1 mb-1" onChange={(e) => setTermoBusca(e.target.value)} onKeyDown={(e) => {if (e.key === 'Enter' && termoBusca !== '') navigate('/buscar')}}/>
+              <input type="text" placeholder='Pesquisar produto...' value={termoBusca} className="px-1 py-1 rounded-md text-gray-500 bg-white ml-1 mb-1" onChange={(e) => setTermoBusca(e.target.value)} onKeyDown={(e) => {if (e.key === 'Enter' && termoBusca !== '') navigate('/buscar')}}/>
             )}
           </li>
         </ul>
-        <div  className="flex items-center gap-3 md:gap-12" >
+        <div className="flex items-center gap-3 md:gap-12" >
         
         {usuario !== '' &&(
           <div className="flex items-center gap-10 text-base md:text-xl">

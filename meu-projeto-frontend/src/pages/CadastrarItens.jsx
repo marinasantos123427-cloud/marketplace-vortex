@@ -88,10 +88,10 @@ return (
                 <option value="doacao">Doação</option>
             </select>
 
-            <p className="text-left text-xl pt-10">Descrição: {produto.descricao}</p>
+            <p className="text-left text-xl pt-10">Descrição: </p>
             <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.descricao} onChange={(e) => setProduto({...produto, descricao: e.target.value})}/>
 
-            <p className="text-left text-xl pt-10">Valor(Se for para doação, determine o valor como 0):  {produto.valor}</p>
+            <p className="text-left text-xl pt-10">Valor(Se for para doação, determine o valor como 0): </p>
             <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.valor} onChange={(e) => setProduto({...produto, valor: e.target.value})}/>
             
             <p className="text-left text-xl pt-10">Faça o upload de uma imagem do produto:  </p>
