@@ -20,7 +20,8 @@ function App() {
   const [termoBusca, setTermoBusca] = useState('');
   const [usuario, setUsuario] = useState(localStorage.getItem('usuario') || '')
   const [mostrarBusca, setMostrarBusca] = useState(false);
-
+  const [produtos, setProdutos] = useState([]);
+  
   function sair(){
     localStorage.removeItem('usuario');
     setUsuario('');

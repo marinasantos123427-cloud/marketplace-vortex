@@ -8,6 +8,7 @@ function Home ({usuario}) {
   const categorias = [{valor: 'livro', rotulo: 'Livro'}, {valor: 'artigo de papelaria', rotulo: 'Artigo de papelaria'}, {valor: 'eletronicos', rotulo: 'Eletronicos'} , {valor: 'vestuario', rotulo: 'Vestuário'} , {valor: 'calculadora', rotulo: 'Calculadora'}, {valor: 'xerox', rotulo: 'Xerox'}, {valor: 'moveis', rotulo: 'Móveis'} , {valor: 'equipamento pratico', rotulo: 'Equipamento prático'}, {valor: 'equipamento de medicao', rotulo: 'Equipamento de medição'} , {valor: 'outro', rotulo: 'Outro'} ];
 
   const [produtos, setProdutos] = useState([])
+  
   const [categoriaSel, setCategoriaSel] = useState('')
   const produtosFiltrados = produtos
   .filter((produto) => categoriaSel === '' || produto.tipoDeProduto === categoriaSel)
