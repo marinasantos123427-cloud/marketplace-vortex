@@ -45,7 +45,7 @@ function MeusProdutos({usuario}) {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {meusProdutos.map((prod) => (
         <div key={prod._id} className="bg-white rounded-lg shadow p-4">
-            <img src={`${import.meta.env.VITE_API_URL}/uploads/${prod.imagem}`} alt={prod.descricao} className="w-full h-40 object-cover rounded"></img>
+            <img src={prod.imagem} alt={prod.descricao} className="w-full h-40 object-cover rounded"></img>
             <p className="font-bold capitalize">{prod.tipoDeProduto}</p>
             <p>{prod.descricao}</p>
             <p>{prod.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${prod.valor}`}</p>
