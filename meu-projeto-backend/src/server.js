@@ -3,10 +3,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const Produto = require('./models/produtos.js'); 
 
-const multer = require('multer');
-const upload = multer({dest: 'uploads/'}) //onde as imagens recebidas serao salvas
-const path = require('path'); // 
-
 require('dotenv').config();
 mongoose.connect(process.env.MONGO_URL);
 
@@ -14,17 +10,14 @@ const app = express();
 
 app.use(cors()); 
 app.use(express.json());
+ 
 
-app.use('/uploads', express.static(path.join(__dirname, 'uploads/'))); // tornar a pasta uploads acessivel em qualquer lugar que meu servidor for salvo e utilizado
-
-app.post('/produtos', upload.single('imagem'), async (req, res) => {
-    if (req.file === undefined){
-        return res.sendStatus(400);
-    }
+app.post('/produtos', async (req, res) => { 
     try {
-            const dados = {...req.body, imagem: req.file.filename}
+            
+            const dados = {...req.body};
             const produto = new Produto(dados);
-            if (!produto.tipoDeProduto || produto.valor === undefined || !produto.imagem){
+            if (!produto.tipoDeProduto || produto.valor === undefined){
                 throw new Error("Falta de informaçoes!")
             }   
             await produto.save();

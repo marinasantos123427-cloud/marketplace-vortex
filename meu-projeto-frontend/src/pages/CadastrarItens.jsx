@@ -23,22 +23,10 @@ useEffect(() => {
 const [imagem, setImagem] = useState(null);
 
 async function cadastrarProduto(){
-
-    const formData = new FormData()
-
-    formData.append("dono", usuario)
-    formData.append("valor", produto.valor)
-    formData.append("descricao", produto.descricao)
-    formData.append("tipoDeNegociacao", produto.tipoDeNegociacao)
-    formData.append("tipoDeProduto", produto.tipoDeProduto)
-
-    if (imagem) {
-        formData.append("imagem", imagem)
-    }
-
     await fetch(`${import.meta.env.VITE_API_URL}/produtos`, {
         method: 'POST',
-        body: formData
+        headers: { 'Content-Type': 'application/json' },
+        body:  JSON.stringify({...produto, dono: usuario}) //formData
     });
 
     setProduto({
@@ -46,7 +34,8 @@ async function cadastrarProduto(){
     dono: '',
     tipoDeNegociacao: '',
     valor: '',
-    descricao: ''
+    descricao: '',
+    imagem: ''
     });
     
     setImagem(null);
@@ -94,8 +83,8 @@ return (
             <p className="text-left text-xl pt-10">Valor(Se for para doação, determine o valor como 0): </p>
             <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.valor} onChange={(e) => setProduto({...produto, valor: e.target.value})}/>
             
-            <p className="text-left text-xl pt-10">Faça o upload de uma imagem do produto:  </p>
-            <input className="block px-4 py-2 border rounded-md mt-3" type ="file" accept="image/png, image/jpeg, image/jpg"  onChange={(e) => setImagem(e.target.files[0])}/>
+            <p className="text-left text-xl pt-10">Informe o URL da imagem do produto:  </p>
+            <input className="block px-4 py-2 border rounded-md mt-3" /*type ="file"*/ type='text' placeholder='Cole a url da imagem' value ={produto.imagem}  onChange={(e) => setProduto({...produto, imagem: e.target.value})} />
             
             <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg shadow-sm transition-colors duration-200 focus:outline-hidden focus:ring-1 focus:ring-offset-2 mt-10 block" onClick={cadastrarProduto}>Cadastrar</button>
 
