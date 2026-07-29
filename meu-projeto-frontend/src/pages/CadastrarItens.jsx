@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CadastrarItens({usuario}) {
 
+
 const navigate = useNavigate();
 const [mensagem, setMensagem] = useState('');
 const [produto, setProduto] = useState({
@@ -20,13 +21,13 @@ useEffect(() => {
         }
     }, [usuario])
 
-const [imagem, setImagem] = useState(null);
+const [imagem, setImagem] = useState('');
 
 async function cadastrarProduto(){
     await fetch(`${import.meta.env.VITE_API_URL}/produtos`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body:  JSON.stringify({...produto, dono: usuario}) //formData
+        body:  JSON.stringify({...produto, dono: usuario, imagem: imagem}) //formData
     });
 
     setProduto({
@@ -37,11 +38,16 @@ async function cadastrarProduto(){
     descricao: '',
     imagem: ''
     });
-    
-    setImagem(null);
 
     setMensagem('Produto cadastrado com sucesso!');
     setTimeout(() => setMensagem(''), 3000);
+}
+
+function lerImagem(e){
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => setImagem(reader.result);
+    reader.readAsDataURL(file)
 }
 
 return (
@@ -81,10 +87,10 @@ return (
             <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.descricao} onChange={(e) => setProduto({...produto, descricao: e.target.value})}/>
 
             <p className="text-left text-xl pt-10">Valor(Se for para doação, determine o valor como 0): </p>
-            <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.valor} onChange={(e) => setProduto({...produto, valor: e.target.value})}/>
+            <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.valor.replace(',', '.')} onChange={(e) => setProduto({...produto, valor: e.target.value})}/>
             
-            <p className="text-left text-xl pt-10">Informe o URL da imagem do produto:  </p>
-            <input className="block px-4 py-2 border rounded-md mt-3" /*type ="file"*/ type='text' placeholder='Cole a url da imagem' value ={produto.imagem}  onChange={(e) => setProduto({...produto, imagem: e.target.value})} />
+            <p className="text-left text-xl pt-10">Escolha uma imagem do produto:  </p>
+            <input className="block px-4 py-2 border rounded-md mt-3" type ="file" placeholder='Cole a url da imagem'  accept='image/*' onChange={lerImagem} />
             
             <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg shadow-sm transition-colors duration-200 focus:outline-hidden focus:ring-1 focus:ring-offset-2 mt-10 block" onClick={cadastrarProduto}>Cadastrar</button>
 
