@@ -15,7 +15,7 @@ export default defineConfig({
 
     manifest: {
       name: 'marketplace-pwa',
-      short_name: 'uniplace',
+      short_name: 'Uniplace',
       description: 'Plataforma de venda e doacao para universitarios',
       theme_color: '#4169E1',
     },

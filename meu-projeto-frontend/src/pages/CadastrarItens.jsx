@@ -90,7 +90,7 @@ return (
             <input className="block px-4 py-2 border rounded-md mt-3" type ="text" value={produto.valor.replace(',', '.')} onChange={(e) => setProduto({...produto, valor: e.target.value})}/>
             
             <p className="text-left text-xl pt-10">Escolha uma imagem do produto:  </p>
-            <input className="block px-4 py-2 border rounded-md mt-3" type ="file" placeholder='Cole a url da imagem'  accept='image/*' onChange={lerImagem} />
+            <input className="block px-1 py-2 border rounded-md mt-3" type ="file" placeholder='Cole a url da imagem'  accept='image/*' onChange={lerImagem} />
             
             <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg shadow-sm transition-colors duration-200 focus:outline-hidden focus:ring-1 focus:ring-offset-2 mt-10 block" onClick={cadastrarProduto}>Cadastrar</button>
 
