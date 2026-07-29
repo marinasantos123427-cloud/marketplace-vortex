@@ -72,10 +72,10 @@ function Home ({usuario}) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {produtosFiltrados.map((produto) => (
         <div key={produto._id} className="bg-white rounded-lg shadow p-4">
-          <img src={produto.imagem} alt={produto.descricao} className="w-full h-40 object-cover rounded"/>
-          <p className="c">{produto.tipoDeProduto}</p>
-          <p>{produto.descricao}</p>
-          <p>{produto.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${produto.valor}`}</p>
+          <img src={produto.imagem} alt={produto.descricao} className="w-full h-80 object-cover rounded"/>
+          <p className="font-bold capitalize text-2xl">{produto.tipoDeProduto}</p>
+          <p className='text-xl'>Descrição: {produto.descricao}</p>
+          <p className='text-xl'>{produto.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${produto.valor}`}</p>
         </div>
       ))}
     </div>    

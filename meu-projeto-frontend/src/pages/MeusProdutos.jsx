@@ -46,9 +46,9 @@ function MeusProdutos({usuario}) {
       {meusProdutos.map((prod) => (
         <div key={prod._id} className="bg-white rounded-lg shadow p-4">
             <img src={prod.imagem} alt={prod.descricao} className="w-full h-40 object-cover rounded"></img>
-            <p className="font-bold capitalize">{prod.tipoDeProduto}</p>
-            <p>{prod.descricao}</p>
-            <p>{prod.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${prod.valor}`}</p>
+            <p className="font-bold capitalize text-2xl">{prod.tipoDeProduto}</p>
+            <p className='text-xl'>{prod.descricao}</p>
+            <p className='text-xl'>{prod.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${prod.valor}`}</p>
             <button className='px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm rounded-lg shadow-sm transition-colors duration-200 focus:outline-hidden focus:ring-1 focus:ring-offset-2 mt-10 block' onClick={() => deletarProduto(prod._id)}>Excluir produto</button>
         </div>
 
