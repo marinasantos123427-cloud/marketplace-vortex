@@ -50,7 +50,7 @@ return (
         {mensagem !== '' && (
         <p className="bg-green-100 text-green-800 px-4 py-2 rounded mb-4"> {mensagem}</p>
     )}
-      <p className="text-red-500 text-left text-xl">Cadastre aqui os seus itens para vender ou doar!</p>
+      <p className="text-indigo-800 font-semibold text-left text-xl text-">Cadastre aqui os seus itens para vender ou doar!</p>
       <div className="relative w-full">
 
             <p className="text-left text-xl pt-10">Tipo de produto: </p>
