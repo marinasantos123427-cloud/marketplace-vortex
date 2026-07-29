@@ -1,7 +1,10 @@
 import React from 'react';
 import { Fragment, useState, useEffect } from 'react';
-
-
+import Login from './Login';
+import { Routes, Route, Link, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router } from 'react-router-dom'
+import PWABadge from '../PWABadge';
+import Buscar from './Buscar';
 
 function Home ({usuario}) {
 
@@ -48,6 +51,19 @@ function Home ({usuario}) {
               <li>♻️ Evitar o descarte semestral de materiais reaproveitáveis por meio do mercado circular</li>
             </ul>
         </div> 
+        <div className="bg-white gap-10 rounded-2xl shadow-md p-8 my-8 text-center">
+          <p className="text-2xl md:text-3xl font-bold text-gray-800 mb-2"> Tem algo parado? Desapega!</p>
+          <p className="text-gray-500 mb-6">Anuncie seus itens e ajude outros estudantes.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+
+          <Link to="/login" className="bg-emerald-500 text-white px-6 py-3 rounded-lg font-bold hover:bg-green-700">
+          Anunciar item
+          </Link>
+          <a href="#vitrine" className="inline-block bg-white text-green-700 border-2 border-green-600 px-8 py-3 rounded-lg font-bold hover:bg-green-50 transition-colors">
+          Buscar itens
+          </a>
+          </div> 
+        </div>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 my-8">
       {estatisticas.map((stat) => (
         <div key={stat.rotulo} className="bg-white rounded-lg shadow p-4 text-center">
@@ -58,8 +74,7 @@ function Home ({usuario}) {
     </div>
     </>
       )}
-    
-
+  
       <select className="block px-2 py-1 border rounded-md mt-3 mb-8" value ={categoriaSel} onChange={(e) => setCategoriaSel(e.target.value)}>
         <option value="">Todas as categorias</option>
         
@@ -69,7 +84,7 @@ function Home ({usuario}) {
         
       </select>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div id="vitrine" className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {produtosFiltrados.map((produto) => (
         <div key={produto._id} className="bg-white rounded-lg shadow p-4">
           <img src={produto.imagem} alt={produto.descricao} className="w-full h-80 object-cover rounded"/>
@@ -79,6 +94,13 @@ function Home ({usuario}) {
         </div>
       ))}
     </div>    
+     <main className="p-8">
+      <PWABadge />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/buscar" element={<Buscar />} />
+        </Routes>
+      </main>
     </div>
   
 
