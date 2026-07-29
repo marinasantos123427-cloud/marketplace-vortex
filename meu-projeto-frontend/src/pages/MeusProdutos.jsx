@@ -35,6 +35,7 @@ function MeusProdutos({usuario}) {
 
     return (
       <>
+      <h1 className="text-2xl font-bold mb-4">Olá, {usuario}! 👋</h1>
       <h1 className="text-2xl font-bold mb-6">Meus produtos</h1>
       {meusProdutos.length === 0 &&(
         <p className="text-gray-500 ">Você ainda não anunciou nenhum produto.</p>
@@ -45,7 +46,7 @@ function MeusProdutos({usuario}) {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {meusProdutos.map((prod) => (
         <div key={prod._id} className="bg-white rounded-lg shadow p-4">
-            <img src={prod.imagem} alt={prod.descricao} className="w-full h-40 object-cover rounded"></img>
+            <img src={prod.imagem} alt={prod.descricao} className="w-full h-80 object-cover rounded"></img>
             <p className="font-bold capitalize text-2xl">{prod.tipoDeProduto}</p>
             <p className='text-xl'>{prod.descricao}</p>
             <p className='text-xl'>{prod.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${prod.valor}`}</p>

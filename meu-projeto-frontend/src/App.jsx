@@ -49,14 +49,14 @@ function App() {
             )}
           </li>
         </ul>
-        <div className="flex items-center gap-3 md:gap-12" >
+        <div className="flex items-center gap-15 md:gap-12" >
         
         {usuario !== '' &&(
-          <div className="flex items-center gap-10 text-base md:text-xl">
+          <div className="flex items-center gap-12 md:gap-10 text-base md:text-xl">
 
             <>
             <Link to="/cadastrar" className="hover:text-blue-400 transition-colors font-medium">
-              Cadastrar itens
+              Anunciar
             </Link>
 
             <Link to="/meusprodutos" className="hover:text-blue-400 transition-colors font-medium">
@@ -68,7 +68,7 @@ function App() {
         )}
         {usuario === '' ? (<Link to="/login" className="hover:text-blue-400 transition-colors text-base md:text-xl font-medium">
               Entrar
-            </Link>) : (<div className="text-base md:text-xl font-medium">Olá, {usuario} | <button onClick={sair} className="underline hover:text-blue-400 text-base md:text-xl font-medium"  >Sair</button></div>
+            </Link>) : (<div className="flex items-center text-base md:text-xl font-medium "> <span className="hidden md:inline"> Olá, {usuario} | &nbsp;</span> <button onClick={sair} className="underline hover:text-blue-400 text-base md:text-xl font-medium" >Sair</button></div>
             )}
         </div>
     </nav>
