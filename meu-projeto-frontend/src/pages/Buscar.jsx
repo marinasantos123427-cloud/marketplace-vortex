@@ -23,8 +23,8 @@ function Buscar({termoBusca}) {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {resultados.map((res) => (
           <div key={res._id} className="bg-white rounded-lg shadow p-4">
-            <img src={res.imagem} alt={res.descricao} className="w-full h-40 object-cover rounded"></img>
-            <p className="font-bold">{res.tipoDeProduto}</p>
+            <img src={res.imagem} alt={res.descricao} className="w-full h-80 object-cover rounded"></img>
+            <p className="font-bold capitalize text-2xl">{res.tipoDeProduto}</p>
             <p>{res.descricao}</p>
             <p>{res.tipoDeNegociacao === 'doacao' ? 'Doação' : `R$ ${res.valor}`}</p>
         </div>
